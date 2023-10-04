@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int n=height.size();
+        int i=0,j=n-1;
+        stack<int>st;
+        st.push(-1);
+        int area=-2;
+        while(i<j){
+            int a=height[i];
+            int b=height[j];
+            if(a<b)
+            area=a*(j-i);
+            else
+            area=b*(j-i);
+            if(area>st.top())
+            st.push(area);
+            
+            if(a<b)
+            i++;
+            else
+            j--;
+        }
+        return st.top();
+    }
+};
