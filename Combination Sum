@@ -1,0 +1,27 @@
+class Solution {
+public:
+    void helper(vector<int>&arr,int target,int index,int n,vector<int>&output,vector<vector<int>>&ans){
+        if(index==n){
+            if(target==0){
+                ans.push_back(output);
+                
+            }
+            return;
+        }
+
+        if(arr[index]<=target){
+            output.push_back(arr[index]);
+            helper(arr,target-arr[index],index,n,output,ans);
+            output.pop_back();
+        }
+
+        helper(arr,target,index+1,n,output,ans);
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int>output;
+        vector<vector<int>>ans;
+        int n=candidates.size();
+        helper(candidates,target,0,n,output,ans);
+        return ans;
+    }
+};
